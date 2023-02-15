@@ -58,4 +58,13 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.post("/:id/delete", async (req, res, next) => {
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(req.params.id);
+    res.redirect("/movies");
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
